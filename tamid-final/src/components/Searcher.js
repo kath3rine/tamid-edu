@@ -9,6 +9,14 @@ function Searcher(props) {
   
     const access_token = props.token
 
+    const [leftCol, setLeftCol] = useState('#e30053');
+    const [leftBg, setLeftBg] = useState('#ffffff')
+    const [midCol, setMidCol] = useState('##20b0f7');
+    const [midBg, setMidBg] = useState('#ffffff')
+    const [rightCol, setRightCol] = useState('#00eb8d');
+    const [rightBg, setRightBg] = useState('#ffffff')
+
+
     const searchArtist = async () => {
        
         const {data} = await axios.get("https://api.spotify.com/v1/search", {
@@ -37,6 +45,33 @@ function Searcher(props) {
         setTracks(artistTracks.data.tracks);
     }
 
+    const swipeLeft = () => {
+      setLeftCol('#ffffff');
+      setLeftBg('#e30053');
+      setMidCol('#20b0f7');
+      setMidBg('#ffffff');
+      setRightCol('#00eb8d');
+      setRightBg('#ffffff');
+    }
+
+    const superlike = () => {
+      setLeftCol('#e30053');
+      setLeftBg('#ffffff');
+      setMidCol('#ffffff');
+      setMidBg('#20b0f7');
+      setRightCol('#00eb8d');
+      setRightBg('#ffffff');
+    }
+
+    const swipeRight = () => {
+      setLeftCol('#e30053');
+      setLeftBg('#ffffff');
+      setMidCol('#20b0f7');
+      setMidBg('#ffffff');
+      setRightCol('#ffffff');
+      setRightBg('#00eb8d');
+    }
+
   return (
       <>
       <div className="SearchForm">
@@ -52,7 +87,7 @@ function Searcher(props) {
         <button  onClick={searchArtist}>Search</button> 
       </div>
       
-      <div className="profile">
+      <div className="profile"> 
         
         {artist && artist.images.length ? <img width={"40%"} src={artist.images[0].url} alt=""/> : <div>No Image</div>}
         
@@ -69,16 +104,22 @@ function Searcher(props) {
         <div className="info">{artist.genres[0]}</div>
         <div className="info">{artist.genres[1]}</div>
         <div className="info">{artist.genres[2]}</div>
-      </div>
+    </div>  
 
       <div className="button-section">
-        <div className="button" id="swipe-left">X</div>
-        <div className="button" id="superlike">★</div>
-        <div className="button" id="swipe-right">♥︎</div>
-      </div>
+        <div className="button" id="swipe-left"
+        style={{background: leftBg, color: leftCol}} 
+        onClick={swipeLeft}>X</div>
+        <div className="button" id="superlike"
+        style={{background: midBg, color: midCol}} 
+        onClick={superlike}>★</div>
+        <div className="button" id="swipe-right"
+        style={{background: rightBg, color: rightCol}} 
+        onClick={swipeRight}>♥︎</div>
+    </div> 
       
       
-    </div>
+    </div> 
       
       </>
      
