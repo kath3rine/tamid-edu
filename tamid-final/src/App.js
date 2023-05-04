@@ -1,7 +1,6 @@
 import {useEffect, useState} from 'react';
 import Searcher  from './components/Searcher';
 import './App.css';
-import axios from 'axios';
 
 function App() {
   const CLIENT_ID = "6fffaf9320fb4f99bd7ca52ecc859d36"
@@ -10,9 +9,6 @@ function App() {
   const RESPONSE_TYPE = "token"
 
   const [token, setToken] = useState("")
-
-  const [searchKey, setSearchKey] = useState("")
-  const [artists, setArtists] = useState([])
 
   useEffect(() => {
         const hash = window.location.hash
@@ -34,35 +30,11 @@ function App() {
       window.localStorage.removeItem("token")
     }
 
-    const searchArtists = async (e) => {
-      e.preventDefault()
-      const {data} = await axios.get("https://api.spotify.com/v1/search", {
-          headers: {
-              Authorization: `Bearer ${token}`
-          },
-          params: {
-              q: searchKey,
-              type: "artist"
-          }
-      })
-  
-      setArtists(data.artists.items)
-  }
-
-  const renderArtists = () => {
-    return artists.map(artist => (
-        <div key={artist.id}>
-            {artist.images.length ? <img width={"100%"} src={artist.images[0].url} alt=""/> : <div>No Image</div>}
-            {artist.name}
-        </div>
-    ))
-}
-
     return (
       <div className="App">
             <header className="App-header">
       <div className="SearchContainer">
-       <h2>Tinderfy</h2>
+       <h1>Tinderfy</h1>
       {!token ?      
             <div >
               

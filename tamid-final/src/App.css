@@ -14,7 +14,7 @@
 }
 
 .App-header {
-  background-color: #ee9999;
+  background-image: linear-gradient(to top right, #e30053 , #f25900);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -28,11 +28,16 @@
   color: #61dafb;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.profile {
+  background-color: #eeeeee;
+  padding: 5%;
+  margin: 5%;
+}
+
+.profile h3, p, li {
+  color: black;
+}
+
+.profile li {
+  text-align: left;
 }

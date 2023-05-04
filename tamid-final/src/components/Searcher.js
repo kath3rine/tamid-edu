@@ -1,14 +1,14 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState} from 'react'
 import '../App.css'
 import axios from 'axios';
 
 function Searcher(props) {
     const [searchKey, setSearchKey] = useState("")
     const [tracks, setTracks] = useState([])
+    const [artist, setArtist] = useState("")
   
     const access_token = props.token
-    
-    
+
     const searchArtist = async () => {
        
         const {data} = await axios.get("https://api.spotify.com/v1/search", {
@@ -22,10 +22,9 @@ function Searcher(props) {
             }
         })
       
-        var artistID = data.artists.items[0].id
-    
+        setArtist(data.artists.items[0])
 
-        var artistTracks = await axios.get(`https://api.spotify.com/v1/artists/${artistID}/top-tracks`, {
+        var artistTracks = await axios.get(`https://api.spotify.com/v1/artists/${artist.id}/top-tracks`, {
             headers: {
                 Authorization: `Bearer ${access_token}`
               },
@@ -52,15 +51,16 @@ function Searcher(props) {
         
         <button  onClick={searchArtist}>Search</button> 
       </div>
+      <div className="profile">
+        <h3> {artist.name} </h3>
+        <img width={"30%"} src={artist.images[0].url}/>
       {
         tracks.slice(0, 5).map(track => (
-            <div key={track.id} >
-                <ul>
-                    <li > {track.name}</li>
-                </ul>
-            </div>
+            <li > {track.name}</li>
         ))
       }
+      </div>
+  
       </>
      
   )
