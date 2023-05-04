@@ -51,16 +51,26 @@ function Searcher(props) {
         
         <button  onClick={searchArtist}>Search</button> 
       </div>
+      
       <div className="profile">
-        <h3> {artist.name} </h3>
-        <img width={"30%"} src={artist.images[0].url}/>
-      {
+        
+        {artist && artist.images.length ? <img width={"40%"} src={artist.images[0].url} alt=""/> : <div>No Image</div>}
+        <h3 className="name"> {artist.name} </h3>
+        
+        <p className="subtitle"> Top Songs </p>
+        {
         tracks.slice(0, 5).map(track => (
-            <li > {track.name}</li>
+            <li > <a href={track.external_urls.spotify}> {track.name}</a></li>
         ))
       }
+      <p className="subtitle"> Genres </p>
+      <div className="subsection"> 
+        <div className="info">{artist.genres[0]}</div>
+        <div className="info">{artist.genres[1]}</div>
+        <div className="info">{artist.genres[2]}</div>
       </div>
-  
+    </div>
+      
       </>
      
   )
