@@ -3,9 +3,11 @@ import '../App.css'
 import axios from 'axios';
 
 function Searcher(props) {
+    let nextId = 0;
     const [searchKey, setSearchKey] = useState("")
     const [tracks, setTracks] = useState([])
     const [artist, setArtist] = useState("")
+    const [matches, setMatches] = useState([])
   
     const access_token = props.token
 
@@ -15,7 +17,6 @@ function Searcher(props) {
     const [midBg, setMidBg] = useState('#ffffff')
     const [rightCol, setRightCol] = useState('#00eb8d');
     const [rightBg, setRightBg] = useState('#ffffff')
-
 
     const searchArtist = async () => {
        
@@ -61,6 +62,10 @@ function Searcher(props) {
       setMidBg('#20b0f7');
       setRightCol('#00eb8d');
       setRightBg('#ffffff');
+      setMatches([
+        ...matches,
+        { id: nextId++, name: artist.name }
+      ]);
     }
 
     const swipeRight = () => {
@@ -70,6 +75,10 @@ function Searcher(props) {
       setMidBg('#ffffff');
       setRightCol('#ffffff');
       setRightBg('#00eb8d');
+      setMatches([
+        ...matches,
+        { id: nextId++, name: artist.name }
+      ]);
     }
 
   return (
@@ -91,7 +100,7 @@ function Searcher(props) {
         
         {artist && artist.images.length ? <img width={"40%"} src={artist.images[0].url} alt=""/> : <div>No Image</div>}
         
-        <h3 className="name"> {artist.name} </h3>
+        <h3 > <a href={artist.external_urls.spotify} className="name"> {artist.name}</a> </h3> 
         
         <p className="subtitle"> Top Songs </p>
         {
