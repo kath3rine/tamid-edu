@@ -24,6 +24,7 @@
   margin: 3%;
   width: 60vw;
   border-radius: 10px;
+  padding-bottom: 30px;
 }
 
 .profile h3 {
@@ -48,15 +49,42 @@
   font-size: 15px;
 }
 
-.subsection {
+.subsection, .button-section {
   column-count: 3;
+  margin-bottom: 15px;
+  align-items: center;
 }
 
 .info {
   border: solid #888888 1px;
   border-radius: 40px;
   color: #888888;
-  padding: 3px;
+  padding: 5px;
   font-size: 15px;
 }
 
+.button {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  padding: 5%;
+  font-size: 35px;
+  margin: auto;
+  background-color: white;
+  
+}
+
+#swipe-left {
+  border: #e30053 solid 3px;
+  color: #e30053;
+}
+
+#superlike {
+  border: #20b0f7 solid 3px;
+  color: #20b0f7;
+}
+
+#swipe-right {
+  border: #00eb8d solid 3px;
+  color: #00eb8d;
+}

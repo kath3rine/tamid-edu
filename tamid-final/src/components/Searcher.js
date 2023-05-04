@@ -55,6 +55,7 @@ function Searcher(props) {
       <div className="profile">
         
         {artist && artist.images.length ? <img width={"40%"} src={artist.images[0].url} alt=""/> : <div>No Image</div>}
+        
         <h3 className="name"> {artist.name} </h3>
         
         <p className="subtitle"> Top Songs </p>
@@ -69,6 +70,14 @@ function Searcher(props) {
         <div className="info">{artist.genres[1]}</div>
         <div className="info">{artist.genres[2]}</div>
       </div>
+
+      <div className="button-section">
+        <div className="button" id="swipe-left">X</div>
+        <div className="button" id="superlike">★</div>
+        <div className="button" id="swipe-right">♥︎</div>
+      </div>
+      
+      
     </div>
       
       </>
