@@ -9,6 +9,7 @@ function App() {
   const RESPONSE_TYPE = "token"
 
   const [token, setToken] = useState("")
+  const [showMatch, setShowMatch] = useState(false)
 
   useEffect(() => {
         const hash = window.location.hash
@@ -34,7 +35,7 @@ function App() {
       <div className="App">
             <header className="App-header">
       <div className="SearchContainer">
-       <h1>Tinderfy</h1>
+       <h1>tinderfy</h1>
       {!token ?      
             <div >
               
@@ -45,7 +46,6 @@ function App() {
             
               <Searcher token={token} />
               <button className= "logOut"onClick={logout}>Logout</button>
-             
             </div>
                  
         }
@@ -57,5 +57,6 @@ function App() {
         </div>
     );
 }
+
 
 export default App;

@@ -18,6 +18,23 @@
   color: #61dafb;
 }
 
+button, input {
+  background-color: white;
+  margin: 10px;
+  border: none;
+  border-radius: 15px;
+  font-size: 18px;
+  padding: 5px;
+}
+
+h2 {
+  color: blue;
+}
+
+#match-button {
+  right: 0;
+}
+
 .profile {
   background-color: white;
   padding: 5%;
@@ -86,4 +103,11 @@
 #swipe-right {
   border: #00eb8d solid 3px;
   color: #00eb8d;
+}
+
+.match-title {
+  color: #e30053;
+  font-weight: 700;
+  font-size: 20px;
+  text-align: left;
 }

@@ -8,6 +8,8 @@ function Searcher(props) {
     const [tracks, setTracks] = useState([])
     const [artist, setArtist] = useState("")
     const [matches, setMatches] = useState([])
+
+    const temp = "temp";
   
     const access_token = props.token
 
@@ -17,6 +19,8 @@ function Searcher(props) {
     const [midBg, setMidBg] = useState('#ffffff')
     const [rightCol, setRightCol] = useState('#00eb8d');
     const [rightBg, setRightBg] = useState('#ffffff')
+
+    const [isShown, setIsShown] = useState(false);
 
     const searchArtist = async () => {
        
@@ -44,6 +48,13 @@ function Searcher(props) {
               }
             })
         setTracks(artistTracks.data.tracks);
+
+        setLeftCol('#e30053');
+        setLeftBg('#ffffff');
+        setMidCol('#20b0f7');
+        setMidBg('#ffffff');
+        setRightCol('#00eb8d');
+        setRightBg('#ffffff');
     }
 
     const swipeLeft = () => {
@@ -81,6 +92,10 @@ function Searcher(props) {
       ]);
     }
 
+    const handleMatch = () => {
+      setIsShown(current => !current);
+    };
+
   return (
       <>
       <div className="SearchForm">
@@ -94,6 +109,7 @@ function Searcher(props) {
           />
         
         <button  onClick={searchArtist}>Search</button> 
+        <button  onClick={handleMatch}>My Matches</button>
       </div>
       
       <div className="profile"> 
@@ -129,6 +145,16 @@ function Searcher(props) {
       
       
     </div> 
+    {isShown && (
+        <div className='profile'>
+          <h3 className='match-title'>New Matches</h3>
+          {
+          matches.slice(0, 5).map(match => (
+            <li >  {match.name}</li>
+        ))
+}
+        </div>
+      )}
       
       </>
      
