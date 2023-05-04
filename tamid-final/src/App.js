@@ -1,4 +1,5 @@
 import {useEffect, useState} from 'react';
+import Searcher  from './components/Searcher';
 import './App.css';
 import axios from 'axios';
 
@@ -60,24 +61,27 @@ function App() {
     return (
       <div className="App">
             <header className="App-header">
-                <h1>Tinderfyt</h1>
-                {!token ?
-                    <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login
-                        to Spotify</a>
-                    : <button onClick={logout}>Logout</button>}
-
-                {token ?
-                    <form onSubmit={searchArtists}>
-                        <input type="text" onChange={e => setSearchKey(e.target.value)}/>
-                        <button type={"submit"}>Search</button>
-                    </form>
-
-                    : <h2>Please login</h2>
-                }
-
-                {renderArtists()}
-
-            </header>
+      <div className="SearchContainer">
+       <h2>Tinderfy</h2>
+      {!token ?      
+            <div >
+              
+              <a href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}>Login to Spotify</a>
+            </div>    
+          :  
+            <div>
+            
+              <Searcher token={token} />
+              <button className= "logOut"onClick={logout}>Logout</button>
+             
+            </div>
+                 
+        }
+ 
+      </div>
+      
+        
+      </header>
         </div>
     );
 }
